@@ -1,1 +1,22 @@
-
+{
+  "name": "Cappuccino",
+  "category": "hotDrinks",
+  "description": "Espresso with steamed milk and foam.",
+  "imageURL": "https://...",
+  "rating": 4.8,
+  "nutritionalInformation": {
+    "calories": 120,
+    "protein": 6,
+    "carbohydrates": 10,
+    "fat": 5
+  },
+  "milkOptions": [
+    "regular",
+    "lactoseFree",
+    "soy",
+    "oat"
+  ],
+  "dietaryTags": [
+    "dairy"
+  ]
+}

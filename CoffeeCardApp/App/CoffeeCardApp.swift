@@ -8,16 +8,15 @@ class AppDelegate: NSObject, UIApplicationDelegate {
     ) -> Bool {
         FirebaseApp.configure()
         
-        #if DEBUG
-        Task {
-            do {
-                try await SeedService().seedMenuIfEmpty()
-                Log.info("Menu seed finished")
-            } catch {
-                Log.error("Menu seed failed:, \(error)")
-            }
-        }
-        #endif
+//#if DEBUG
+//        Task {
+//            do {
+//                Log.info("Menu seed finished")
+//            } catch {
+//                Log.error("Menu seed failed:, \(error)")
+//            }
+//        }
+//#endif
         
         return true
     }
