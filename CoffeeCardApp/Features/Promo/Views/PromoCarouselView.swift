@@ -1,83 +1,51 @@
 import SwiftUI
 
 struct PromoCarouselView: View {
-    // View owns the ViewModel
-    @StateObject private var viewModel: PromoViewModel
-    @State private var selection: Int = 0   // current page index
-    
-    // Custom init so we can inject the repository (DI)
-    init() {
-        let repo = FirestorePromoRepository()
-        _viewModel = StateObject(wrappedValue: PromoViewModel(repository: repo))
-    }
-    
+    @ObservedObject var promoViewModel: PromoViewModel
+    @State private var selection: Int = 0
+
     var body: some View {
         VStack(spacing: 16) {
-            
-            // Loading state
-            if viewModel.isLoading {
+            if promoViewModel.isLoading && promoViewModel.promos.isEmpty {
                 ProgressView("Loading promos…")
                     .frame(height: 250)
                     .padding(.horizontal, 16)
             }
-            
-            // Error state
-            else if let error = viewModel.errorMessage {
-                Text("Error: \(error)")
+            else if let error = promoViewModel.errorMessage {
+                Text(error)
                     .foregroundColor(.red)
-                    .multilineTextAlignment(.center)
-                    .padding()
             }
-            
-            // Empty state
-            else if viewModel.promos.isEmpty {
+            else if promoViewModel.promos.isEmpty {
                 Text("No promos yet")
                     .foregroundColor(.secondary)
             }
-            
-            // Success state – show carousel
             else {
                 carousel
             }
         }
         .padding(.vertical, 24)
         .task {
-            // called once when the view appears
-            await viewModel.loadPromos()
+            await promoViewModel.loadPromos()
         }
-    }
+}
+
     
     // MARK: - Carousel view
     
     private var carousel: some View {
         VStack(spacing: 12) {
             TabView(selection: $selection) {
-                ForEach(Array(viewModel.promos.enumerated()), id: \.element.id) { index, promo in
-                    AsyncImage(url: URL(string: promo.imageURL)) { image in
-                        image
-                            .resizable()
-                            .scaledToFill()
-                            .frame(height: 230)
-                            .clipShape(RoundedRectangle(cornerRadius: 12))
-                            .padding(.horizontal, 16)
-                            // scale for selected page
-                            .scaleEffect(selection == index ? 0.9 : 1.0)
-                            .shadow(radius: selection == index ? 8 : 0)
-                            .animation(.spring(), value: selection)
-                    } placeholder: {
-                        RoundedRectangle(cornerRadius: 12)
-                            .fill(Color.gray.opacity(0.15))
-                            .frame(height: 230)
-                            .padding(.horizontal, 16)
-                    }
-                    .tag(index)
+                ForEach(Array(promoViewModel.promos.enumerated()), id: \.element.id) { index, promo in
+                    PromoBannerCard(imageURL: promo.imageURL)
+                        .padding(.horizontal, 16)
+                        .tag(index)
                 }
             }
-            .tabViewStyle(.page(indexDisplayMode: .never)) // we do custom dots
-            
-            // Custom dots
+            .tabViewStyle(.page(indexDisplayMode: .never))
+
+            // dots те же
             HStack(spacing: 6) {
-                ForEach(viewModel.promos.indices, id: \.self) { index in
+                ForEach(promoViewModel.promos.indices, id: \.self) { index in
                     Circle()
                         .frame(width: selection == index ? 10 : 6,
                                height: selection == index ? 10 : 6)
@@ -90,3 +58,4 @@ struct PromoCarouselView: View {
         .frame(maxHeight: 250)
     }
 }
+

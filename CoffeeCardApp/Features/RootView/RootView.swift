@@ -10,13 +10,15 @@ import SwiftUI
 struct RootView: View {
     @State private var selection: CustomTabModel = .home
     private let tabs = CustomTabModel.allCases
+    @StateObject private var promoViewModel =
+    PromoViewModel(repository: FirestorePromoRepository())
     var body: some View {
         ZStack {
-           
+            
             Group {
                 switch selection {
                 case .home:
-                    HomeView()
+                    HomeView(promoViewModel: promoViewModel)
                 case .Menu:
                     MenuView()
                 case .profile:

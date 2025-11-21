@@ -9,10 +9,11 @@ import SwiftUI
 
 struct HomeView: View {
     @State var showQRCard: Bool = false
+    @ObservedObject var promoViewModel: PromoViewModel
     var body: some View {
         VStack {
             HeaderView()
-            PromoCarouselView()
+            PromoCarouselView(promoViewModel: promoViewModel)
             HStack {
                 
             }
@@ -21,8 +22,4 @@ struct HomeView: View {
                maxHeight: .infinity,
                alignment: .top)
     }
-}
-
-#Preview {
-    HomeView()
 }

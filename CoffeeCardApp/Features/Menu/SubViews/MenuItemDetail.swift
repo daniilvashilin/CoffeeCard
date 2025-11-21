@@ -17,6 +17,7 @@ struct MenuItemDetail: View {
                 Text(item.description ?? "Empty")
                     .font(.appBody)
             }
+            .foregroundStyle(.primaryText)
             .padding()
                 Spacer()
         }

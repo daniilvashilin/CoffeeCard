@@ -2,7 +2,9 @@ import FirebaseFirestore
 import Foundation
 import SwiftUI
 
-struct Promo: Identifiable {
-    let id: String
-    let imageURL: String
+struct Promo: Identifiable, Codable {
+    var id: String
+    var imageURL: String
+    var title: String?
+    var description: String?
 }

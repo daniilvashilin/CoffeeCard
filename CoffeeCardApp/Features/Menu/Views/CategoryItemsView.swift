@@ -24,6 +24,7 @@ struct CategoryItemsView: View {
                 }
             }
             .padding()
+            .padding(.bottom, 80)
         }
         .navigationTitle(category.title)
         .navigationBarTitleDisplayMode(.inline)

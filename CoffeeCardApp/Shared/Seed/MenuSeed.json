@@ -1,0 +1,200 @@
+[
+  {
+    "name": "Espresso",
+    "description": "A rich, concentrated shot of coffee with an intense flavor.",
+    "imageURL": "https://firebasestorage.googleapis.com/v0/b/kakaobarzilai-5c065.firebasestorage.app/o/cup.png?alt=media&token=4bcec205-845e-4c59-9c93-10dd2e3ef796",
+    "rating": 4.8,
+    "category": "hotDrinks",
+    "nutritionalInformation": {
+      "calories": 5,
+      "protein": 0,
+      "carbohydrates": 1,
+      "fat": 0,
+      "fiber": 0
+    }
+  },
+  {
+    "name": "Double Espresso",
+    "description": "A double shot of espresso for a stronger and deeper flavor.",
+    "imageURL": "https://firebasestorage.googleapis.com/v0/b/kakaobarzilai-5c065.firebasestorage.app/o/cup.png?alt=media&token=4bcec205-845e-4c59-9c93-10dd2e3ef796",
+    "rating": 4.9,
+    "category": "hotDrinks",
+    "nutritionalInformation": {
+      "calories": 10,
+      "protein": 0,
+      "carbohydrates": 2,
+      "fat": 0,
+      "fiber": 0
+    }
+  },
+  {
+    "name": "Cappuccino",
+    "description": "Espresso mixed with steamed milk and a thick layer of foam.",
+    "imageURL": "https://firebasestorage.googleapis.com/v0/b/kakaobarzilai-5c065.firebasestorage.app/o/cup.png?alt=media&token=4bcec205-845e-4c59-9c93-10dd2e3ef796",
+    "rating": 4.8,
+    "category": "hotDrinks",
+    "nutritionalInformation": {
+      "calories": 80,
+      "protein": 4,
+      "carbohydrates": 6,
+      "fat": 3,
+      "fiber": 0
+    }
+  },
+  {
+    "name": "Americano",
+    "description": "Hot water mixed with a fresh espresso shot.",
+    "imageURL": "https://firebasestorage.googleapis.com/v0/b/kakaobarzilai-5c065.firebasestorage.app/o/cup.png?alt=media&token=4bcec205-845e-4c59-9c93-10dd2e3ef796",
+    "rating": 4.7,
+    "category": "hotDrinks",
+    "nutritionalInformation": {
+      "calories": 10,
+      "protein": 0,
+      "carbohydrates": 2,
+      "fat": 0,
+      "fiber": 0
+    }
+  },
+  {
+    "name": "Macchiato",
+    "description": "A shot of espresso with a small touch of milk foam.",
+    "imageURL": "https://firebasestorage.googleapis.com/v0/b/kakaobarzilai-5c065.firebasestorage.app/o/cup.png?alt=media&token=4bcec205-845e-4c59-9c93-10dd2e3ef796",
+    "rating": 4.6,
+    "category": "hotDrinks",
+    "nutritionalInformation": {
+      "calories": 15,
+      "protein": 1,
+      "carbohydrates": 1,
+      "fat": 0,
+      "fiber": 0
+    }
+  },
+  {
+    "name": "Nes Coffee with Milk",
+    "description": "Classic Israeli instant coffee blended with warm milk.",
+    "imageURL": "https://firebasestorage.googleapis.com/v0/b/kakaobarzilai-5c065.firebasestorage.app/o/cup.png?alt=media&token=4bcec205-845e-4c59-9c93-10dd2e3ef796",
+    "rating": 4.4,
+    "category": "hotDrinks",
+    "nutritionalInformation": {
+      "calories": 60,
+      "protein": 3,
+      "carbohydrates": 5,
+      "fat": 2,
+      "fiber": 0
+    }
+  },
+  {
+    "name": "Black Coffee (Turkish)",
+    "description": "Traditional strong Turkish-style coffee.",
+    "imageURL": "https://firebasestorage.googleapis.com/v0/b/kakaobarzilai-5c065.firebasestorage.app/o/cup.png?alt=media&token=4bcec205-845e-4c59-9c93-10dd2e3ef796",
+    "rating": 4.7,
+    "category": "hotDrinks",
+    "nutritionalInformation": {
+      "calories": 5,
+      "protein": 0,
+      "carbohydrates": 1,
+      "fat": 0,
+      "fiber": 0
+    }
+  },
+  {
+    "name": "Tea Nana",
+    "description": "Fresh herbal tea with nana mint leaves.",
+    "imageURL": "https://firebasestorage.googleapis.com/v0/b/kakaobarzilai-5c065.firebasestorage.app/o/cup.png?alt=media&token=4bcec205-845e-4c59-9c93-10dd2e3ef796",
+    "rating": 4.5,
+    "category": "hotDrinks",
+    "nutritionalInformation": {
+      "calories": 0,
+      "protein": 0,
+      "carbohydrates": 0,
+      "fat": 0,
+      "fiber": 0
+    }
+  },
+
+  {
+    "name": "Iced Coffee",
+    "description": "Cold espresso shaken or mixed with ice.",
+    "imageURL": "https://firebasestorage.googleapis.com/v0/b/kakaobarzilai-5c065.firebasestorage.app/o/drink.png?alt=media&token=a21108e7-f4bd-441c-88d5-1490f4a32a6d",
+    "rating": 4.6,
+    "category": "coldDrinks",
+    "nutritionalInformation": {
+      "calories": 40,
+      "protein": 1,
+      "carbohydrates": 8,
+      "fat": 1,
+      "fiber": 0
+    }
+  },
+  {
+    "name": "Cold Coffee",
+    "description": "Refreshing iced coffee served with ice cubes.",
+    "imageURL": "https://firebasestorage.googleapis.com/v0/b/kakaobarzilai-5c065.firebasestorage.app/o/drink.png?alt=media&token=a21108e7-f4bd-441c-88d5-1490f4a32a6d",
+    "rating": 4.5,
+    "category": "coldDrinks",
+    "nutritionalInformation": {
+      "calories": 60,
+      "protein": 2,
+      "carbohydrates": 10,
+      "fat": 1,
+      "fiber": 0
+    }
+  },
+  {
+    "name": "Hot Chocolate",
+    "description": "Warm cocoa drink with sweet chocolate flavor.",
+    "imageURL": "https://firebasestorage.googleapis.com/v0/b/kakaobarzilai-5c065.firebasestorage.app/o/cup.png?alt=media&token=4bcec205-845e-4c59-9c93-10dd2e3ef796",
+    "rating": 4.8,
+    "category": "hotDrinks",
+    "nutritionalInformation": {
+      "calories": 120,
+      "protein": 4,
+      "carbohydrates": 20,
+      "fat": 3,
+      "fiber": 1
+    }
+  },
+
+  {
+    "name": "Limonana Frozen",
+    "description": "Frozen lemon and nana mint blended with ice.",
+    "imageURL": "https://firebasestorage.googleapis.com/v0/b/kakaobarzilai-5c065.firebasestorage.app/o/drink.png?alt=media&token=a21108e7-f4bd-441c-88d5-1490f4a32a6d",
+    "rating": 4.9,
+    "category": "beverages",
+    "nutritionalInformation": {
+      "calories": 110,
+      "protein": 0,
+      "carbohydrates": 28,
+      "fat": 0,
+      "fiber": 1
+    }
+  },
+  {
+    "name": "Lemonade",
+    "description": "Freshly squeezed sweet lemon drink.",
+    "imageURL": "https://firebasestorage.googleapis.com/v0/b/kakaobarzilai-5c065.firebasestorage.app/o/drink.png?alt=media&token=a21108e7-f4bd-441c-88d5-1490f4a32a6d",
+    "rating": 4.6,
+    "category": "beverages",
+    "nutritionalInformation": {
+      "calories": 90,
+      "protein": 0,
+      "carbohydrates": 25,
+      "fat": 0,
+      "fiber": 0
+    }
+  },
+  {
+    "name": "Orange Juice",
+    "description": "Freshly squeezed pure orange juice.",
+    "imageURL": "https://firebasestorage.googleapis.com/v0/b/kakaobarzilai-5c065.firebasestorage.app/o/drink.png?alt=media&token=a21108e7-f4bd-441c-88d5-1490f4a32a6d",
+    "rating": 4.8,
+    "category": "beverages",
+    "nutritionalInformation": {
+      "calories": 110,
+      "protein": 1,
+      "carbohydrates": 26,
+      "fat": 0,
+      "fiber": 1
+    }
+  }
+]

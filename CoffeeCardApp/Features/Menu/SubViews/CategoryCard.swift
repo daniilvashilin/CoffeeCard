@@ -6,7 +6,6 @@ struct CategoryCard: View {
 
     var body: some View {
         VStack(spacing: 8) {
-            // later: put your icon here
             RoundedRectangle(cornerRadius: 24)
                 .fill(Color(.secondarySystemBackground))
                 .frame(width: 80, height: 80)
