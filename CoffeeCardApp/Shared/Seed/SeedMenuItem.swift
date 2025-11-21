@@ -13,15 +13,17 @@ final class SeedService {
     private let db = Firestore.firestore()
 
     func seedMenuIfEmpty() async throws {
-        let snapshot = try await db.collection("menuItems").limit(to: 1).getDocuments()
+        let snapshot = try await db.collection("menuItems")
+            .limit(to: 1)
+            .getDocuments()
 
         guard snapshot.isEmpty else {
-            print("⚠️ Menu already exists, skipping seed.")
+            Log.info("Menu already exists, skipping seed")
             return
         }
 
         guard let url = Bundle.main.url(forResource: "MenuSeed", withExtension: "json") else {
-            print("❌ MenuSeed.json not found")
+            Log.error("MenuSeed.json not found")
             return
         }
 
@@ -29,26 +31,43 @@ final class SeedService {
         let items = try JSONDecoder().decode([SeedMenuItem].self, from: data)
 
         for item in items {
-            var data: [String: Any] = [
-                "name": item.name,
-                "description": item.description as Any,
-                "imageURL": item.imageURL as Any,
-                "rating": item.rating as Any,
-                "category": item.category,  // enum rawValue string
-            ]
 
-            if let nutrition = item.nutritionalInformation {
-                data["nutritionalInformation"] = [
-                    "calories": nutrition.calories as Any,
-                    "carbohydrates": nutrition.carbohydrates as Any,
-                    "protein": nutrition.protein as Any,
-                    "fat": nutrition.fat as Any
-                ]
+            // валидация категории (если enum есть)
+            guard let category = CatalogTypeModel(rawValue: item.category) else {
+                Log.error("Unknown category in seed: \(item.category)")
+                continue
             }
 
-            try await db.collection("menuItems").addDocument(data: data)
+            var docData: [String: Any] = [
+                "name": item.name,
+                "category": category.rawValue
+            ]
+
+            if let description = item.description {
+                docData["description"] = description
+            }
+            if let imageURL = item.imageURL {
+                docData["imageURL"] = imageURL
+            }
+            if let rating = item.rating {
+                docData["rating"] = rating
+            }
+
+            if let nutrition = item.nutritionalInformation {
+                var nutritionData: [String: Any] = [:]
+                if let calories = nutrition.calories { nutritionData["calories"] = calories }
+                if let carbs = nutrition.carbohydrates { nutritionData["carbohydrates"] = carbs }
+                if let protein = nutrition.protein { nutritionData["protein"] = protein }
+                if let fat = nutrition.fat { nutritionData["fat"] = fat }
+
+                if !nutritionData.isEmpty {
+                    docData["nutritionalInformation"] = nutritionData
+                }
+            }
+
+            try await db.collection("menuItems").addDocument(data: docData)
         }
 
-        print("✅ Seed complete. Items added: \(items.count)")
+        Log.info("Seed complete. Items added: \(items.count)")
     }
 }

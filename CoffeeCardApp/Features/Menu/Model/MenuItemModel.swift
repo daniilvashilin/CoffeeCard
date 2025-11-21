@@ -10,4 +10,5 @@ struct MenuItemModel: Identifiable, Codable {
     var rating: Double?
     var category: CatalogTypeModel
     var nutritionalInformation: NutritionModel?
+    
 }

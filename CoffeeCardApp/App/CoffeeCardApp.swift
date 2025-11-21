@@ -12,9 +12,9 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         Task {
             do {
                 try await SeedService().seedMenuIfEmpty()
-                print("✅ Menu seed finished")
+                Log.info("Menu seed finished")
             } catch {
-                print("❌ Menu seed failed:", error)
+                Log.error("Menu seed failed:, \(error)")
             }
         }
         #endif

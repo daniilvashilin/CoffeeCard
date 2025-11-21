@@ -11,7 +11,7 @@ final class FirestoreMenuRepository: MenuRepository {
             do {
                 return try document.data(as: MenuItemModel.self)
             } catch {
-                print("❌ Failed to decode MenuItemModel from doc \(document.documentID): \(error)")
+                Log.error("Failed to decode MenuItemModel from doc \(document.documentID): \(error)")
                 return nil
             }
         }
