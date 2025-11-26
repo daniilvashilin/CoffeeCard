@@ -1,4 +1,5 @@
 import FirebaseFirestore
+import Foundation
 
 struct SeedMenuItem: Codable {
     let name: String
@@ -7,67 +8,93 @@ struct SeedMenuItem: Codable {
     let rating: Double?
     let category: String
     let nutritionalInformation: NutritionModel?
+    let weight: Double?
+    let milkOptions: [MilkType]?
+    let dietaryTags: [DietaryTag]?
 }
 
 final class SeedService {
     private let db = Firestore.firestore()
+    private let collectionName = "menuItems"
 
-    func seedMenuIfEmpty() async throws {
-        let snapshot = try await db.collection("menuItems")
-            .limit(to: 1)
-            .getDocuments()
+    private func normalize(_ s: String) -> String {
+        s.trimmingCharacters(in: .whitespacesAndNewlines).lowercased()
+    }
 
-        guard snapshot.isEmpty else {
-            Log.info("Menu already exists, skipping seed")
-            return
-        }
+    func seedMenuFromJSONUpsert(jsonFile: String = "MenuSeed",
+                                ext: String = "json") async throws {
 
-        guard let url = Bundle.main.url(forResource: "MenuSeed", withExtension: "json") else {
-            Log.error("MenuSeed.json not found")
+        guard let url = Bundle.main.url(forResource: jsonFile, withExtension: ext) else {
+            print("❌ \(jsonFile).json not found in bundle")
             return
         }
 
         let data = try Data(contentsOf: url)
         let items = try JSONDecoder().decode([SeedMenuItem].self, from: data)
 
-        for item in items {
+        if items.isEmpty {
+            print("ℹ️ Seed file empty")
+            return
+        }
 
-            // валидация категории (если enum есть)
-            guard let category = CatalogTypeModel(rawValue: item.category) else {
-                Log.error("Unknown category in seed: \(item.category)")
-                continue
+        let snapshot = try await db.collection(collectionName).getDocuments()
+
+        // Собираем map: normalizedName -> DocumentSnapshot
+        var existingByName: [String: QueryDocumentSnapshot] = [:]
+        for doc in snapshot.documents {
+            if let name = doc.data()["name"] as? String {
+                existingByName[normalize(name)] = doc
             }
+        }
 
-            var docData: [String: Any] = [
-                "name": item.name,
-                "category": category.rawValue
-            ]
+        print("🌱 Upserting \(items.count) items...")
 
-            if let description = item.description {
-                docData["description"] = description
-            }
-            if let imageURL = item.imageURL {
-                docData["imageURL"] = imageURL
-            }
-            if let rating = item.rating {
-                docData["rating"] = rating
-            }
+        let chunkSize = 400
+        var start = 0
 
-            if let nutrition = item.nutritionalInformation {
-                var nutritionData: [String: Any] = [:]
-                if let calories = nutrition.calories { nutritionData["calories"] = calories }
-                if let carbs = nutrition.carbohydrates { nutritionData["carbohydrates"] = carbs }
-                if let protein = nutrition.protein { nutritionData["protein"] = protein }
-                if let fat = nutrition.fat { nutritionData["fat"] = fat }
+        while start < items.count {
+            let end = min(start + chunkSize, items.count)
+            let chunk = items[start..<end]
+            let batch = db.batch()
 
-                if !nutritionData.isEmpty {
-                    docData["nutritionalInformation"] = nutritionData
+            for item in chunk {
+                let key = normalize(item.name)
+
+                let payload: [String: Any] = [
+                    "name": item.name,
+                    "description": item.description as Any,
+                    "imageURL": item.imageURL as Any,
+                    "rating": item.rating as Any,
+                    "category": item.category,
+                    "weight": item.weight as Any,
+                    "milkOptions": item.milkOptions?.map { $0.rawValue } as Any,
+                    "dietaryTags": item.dietaryTags?.map { $0.rawValue } as Any,
+                    "nutritionalInformation": item.nutritionalInformation.map {
+                        [
+                            "calories": $0.calories as Any,
+                            "carbohydrates": $0.carbohydrates as Any,
+                            "protein": $0.protein as Any,
+                            "fat": $0.fat as Any
+                        ]
+                    } as Any
+                ]
+
+                if let existingDoc = existingByName[key] {
+                    // update existing
+                    batch.setData(payload, forDocument: existingDoc.reference, merge: true)
+                    print("🔁 update:", item.name)
+                } else {
+                    // add new
+                    let ref = db.collection(collectionName).document()
+                    batch.setData(payload, forDocument: ref)
+                    print("➕ add:", item.name)
                 }
             }
 
-            try await db.collection("menuItems").addDocument(data: docData)
+            try await batch.commit()
+            start = end
         }
 
-        Log.info("Seed complete. Items added: \(items.count)")
+        print("✅ Seed complete (upsert)")
     }
 }

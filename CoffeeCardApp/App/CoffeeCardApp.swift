@@ -8,15 +8,14 @@ class AppDelegate: NSObject, UIApplicationDelegate {
     ) -> Bool {
         FirebaseApp.configure()
         
-//#if DEBUG
 //        Task {
 //            do {
-//                Log.info("Menu seed finished")
+//                try await SeedService().seedMenuFromJSONUpsert(jsonFile: "CakesSeed")
+//                print("🍰 Cakes upsert finished")
 //            } catch {
-//                Log.error("Menu seed failed:, \(error)")
+//                print("❌ Cakes upsert failed:", error)
 //            }
 //        }
-//#endif
         
         return true
     }

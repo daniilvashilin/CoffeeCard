@@ -6,7 +6,8 @@ struct MenuItemDetail: View {
     var item: MenuItemModel
     private let imageSize: CGFloat = 150
     private let cornerRadius: CGFloat = 16
-    
+    @State private var selectedMilkOption: MilkType? = .regular
+    @State private var selectedSize: DrinkSize? = .small
     var body: some View {
         
         VStack(spacing: 0) {
@@ -19,43 +20,125 @@ struct MenuItemDetail: View {
                 
                 imageView
                     .padding(.top, 80)
+                
+                VStack {
+                    Spacer()
+                    HStack {
+                        if let tag = currentKosherTag() {
+                            Image(tag.imageName)
+                                .resizable()
+                                .frame(width: 46, height: 46)
+                                .padding(.leading, 16)
+                                .padding(.bottom, 16)
+                        }
+                        Spacer()
+                    }
+                }
             }
             .frame(height: 250)
             Divider()
                 .padding()
             
-           
-                // MARK: - Tags + Milk options in one line
-                HStack(spacing: 14) {
-                    // 1) Dietary tags (Parve / Dairy / Vegan / Gluten-Free)
-                    if let tags = item.dietaryTags {
-                        ForEach(tags, id: \.self) { tag in
-                            Image(tag.imageName)
-                                .resizable()
-                                .frame(width: 28, height: 28)
-                        }
+            
+            // MARK: - Tags + Milk options in one line
+            VStack(alignment: .leading, spacing: 18) {
+                // MARK: MILK OPTION UI
+                HStack(alignment: .center, spacing: 12) {
+                    VStack(alignment: .leading, spacing: 2) {
+                        Text("Milk Base:")
+                            .font(.caption)
+                            .foregroundStyle(.primaryText)
+                        Text(selectedMilkOption?.title ?? "Unknown")
+                            .font(.subheadline.bold())
+                            .foregroundStyle(selectedMilkOption?.milkTypeColor ?? .primaryText)
+                            .lineLimit(1)
                     }
+                    .frame(width: 110, alignment: .leading)
 
-                    // 2) Milk options (Regular / Soy / Oat etc.)
-                    if let milkOptions = item.milkOptions {
-                        ForEach(milkOptions, id: \.self) { milk in
-                            Image(milk.imageName)
-                                .resizable()
-                                .frame(width: 28, height: 28)
+                    HStack(spacing: 10) {
+                        if let milkOptions = item.milkOptions, !milkOptions.isEmpty {
+                            ForEach(milkOptions, id: \.self) { milk in
+                                Button {
+                                    selectedMilkOption = milk
+                                } label: {
+                                    ZStack {
+                                        Circle()
+                                            .fill(milk.milkTypeColor)
+                                            .frame(width: 38, height: 38)
+                                        Image(milk.imageName)
+                                            .resizable()
+                                            .frame(width: 24, height: 24)
+                                    }
+                                    .scaleEffect(selectedMilkOption == milk ? 1.1 : 0.9)
+                                    .opacity(selectedMilkOption == milk ? 1 : 0.7)
+                                }
+                            }
+                        } else {
+                            ZStack {
+                                Circle()
+                                    .stroke(Color.red, lineWidth: 2)
+                                    .frame(width: 38, height: 38)
+                                Image(systemName: "nosign")
+                                    .font(.system(size: 16, weight: .bold))
+                                    .foregroundColor(.red)
+                            }
                         }
                     }
                 }
-                .frame(maxWidth: .infinity, alignment: .center)
-                .padding(.horizontal)
-                .padding(.bottom, 8)
+
+                // MARK: SIZE OPTION UI
+                HStack(alignment: .center, spacing: 12) {
+                    Text("Select Size:")
+                        .font(.caption)
+                        .foregroundStyle(.primaryText)
+                        .frame(width: 110, alignment: .leading)
+
+                    HStack(spacing: 14) {
+                        if let sizeOptions = item.DrinkSizeOptions, !sizeOptions.isEmpty {
+                            ForEach(sizeOptions, id: \.self) { size in
+                                Button {
+                                    selectedSize = size
+                                } label: {
+                                    ZStack {
+                                        Circle()
+                                            .fill(.primaryText)
+                                            .frame(width: 38, height: 38)
+                                        Text(size.title)
+                                            .foregroundStyle(.buttonText)
+                                            .font(.headline.bold())
+                                    }
+                                    .scaleEffect(selectedSize == size ? 1.1 : 0.9)
+                                    .opacity(selectedSize == size ? 1 : 0.5)
+                                }
+                            }
+                        } else {
+                            ZStack {
+                                Circle()
+                                    .stroke(Color.red, lineWidth: 2)
+                                    .frame(width: 38, height: 38)
+                                Image(systemName: "nosign")
+                                    .font(.system(size: 16, weight: .bold))
+                                    .foregroundColor(.red)
+                            }
+                        }
+                    }
+                }
+            }
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .padding(.horizontal)
+            .padding(.bottom, 8)
+            
+            
             Divider()
                 .padding()
+            
+            
             ScrollView {
                 // MARK: - Title & description
                 Text(item.name)
                     .font(.title)
                     .foregroundStyle(.primaryText)
-
+                
                 Text(item.description ?? "Item Description")
                     .font(.headline)
                     .foregroundStyle(.primaryText)
@@ -66,6 +149,28 @@ struct MenuItemDetail: View {
         .ignoresSafeArea(edges: .top)
     }
     
+    private func currentKosherTag() -> DietaryTag? {
+        guard let tags = item.dietaryTags else { return nil }
+        
+        let kosherTags = tags.filter { $0 == .dairy || $0 == .parve }
+        guard !kosherTags.isEmpty else { return nil }
+        
+        if kosherTags.contains(.dairy) && kosherTags.contains(.parve) {
+            guard let milk = selectedMilkOption else { return .dairy }
+            
+            switch milk {
+            case .regular, .lactoseFree:
+                return .dairy
+            case .soy, .almond, .oat:
+                return .parve
+            }
+        }
+        
+        if kosherTags.contains(.dairy) { return .dairy }
+        if kosherTags.contains(.parve) { return .parve }
+        
+        return nil
+    }
     
     @ViewBuilder
     private var imageView: some View {

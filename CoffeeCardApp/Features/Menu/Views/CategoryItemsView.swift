@@ -28,5 +28,6 @@ struct CategoryItemsView: View {
         }
         .navigationTitle(category.title)
         .navigationBarTitleDisplayMode(.inline)
+        .scrollIndicators(.hidden)
     }
 }

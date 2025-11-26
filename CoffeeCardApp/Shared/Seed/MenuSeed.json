@@ -1,22 +1,145 @@
-{
-  "name": "Cappuccino",
-  "category": "hotDrinks",
-  "description": "Espresso with steamed milk and foam.",
-  "imageURL": "https://...",
-  "rating": 4.8,
-  "nutritionalInformation": {
-    "calories": 120,
-    "protein": 6,
-    "carbohydrates": 10,
-    "fat": 5
+[
+  {
+    "name": "Crunch Dubai Halva (Dairy)",
+    "description": "Piece of Cake crunch cake with pistachio/halva flavor in Dubai style.",
+    "imageURL": "https://firebasestorage.googleapis.com/v0/b/kakaobarzilai-5c065.firebasestorage.app/o/craanchDubaiHalvaIcon.png?alt=media&token=b4650db7-7d6d-4e68-a554-d97f7b672aa9",
+    "rating": null,
+    "category": "cakes",
+    "nutritionalInformation": null,
+    "weight": 650,
+    "milkOptions": null,
+    "dietaryTags": ["dairy"]
   },
-  "milkOptions": [
-    "regular",
-    "lactoseFree",
-    "soy",
-    "oat"
-  ],
-  "dietaryTags": [
-    "dairy"
-  ]
-}
+  {
+    "name": "Crunch Butter Halva Chocolate (Dairy)",
+    "description": "Butter-halva chocolate crunch cake.",
+    "imageURL": "https://firebasestorage.googleapis.com/v0/b/kakaobarzilai-5c065.firebasestorage.app/o/crabchHalvaButter-removebg-preview.png?alt=media&token=dda84e83-e0d8-4e3d-8d91-fad1fb6dd58c",
+    "rating": null,
+    "category": "cakes",
+    "nutritionalInformation": null,
+    "weight": 650,
+    "milkOptions": null,
+    "dietaryTags": ["dairy"]
+  },
+  {
+    "name": "Crunch Chocolate No Added Sugar (Parve)",
+    "description": "Chocolate crunch cake with no added sugar.",
+    "imageURL": "https://firebasestorage.googleapis.com/v0/b/kakaobarzilai-5c065.firebasestorage.app/o/CrunchChocolateNoAddedSugar-removebg-preview.png?alt=media&token=1d864bac-6157-4375-8aa7-49bd3b7362fa",
+    "rating": null,
+    "category": "cakes",
+    "nutritionalInformation": null,
+    "weight": 650,
+    "milkOptions": null,
+    "dietaryTags": ["parve"]
+  },
+  {
+    "name": "Crunch Ferrero Rocher (Dairy)",
+    "description": "Crunch cake topped with Ferrero Rocher style chocolate and hazelnuts.",
+    "imageURL": "https://firebasestorage.googleapis.com/v0/b/kakaobarzilai-5c065.firebasestorage.app/o/81dbb9_7f4b2ca7a9ad4f33a160974cba7f771b_mv2-removebg-preview.png?alt=media&token=529c98b4-e9a6-4ebc-99f9-46896edfc71b",
+    "rating": null,
+    "category": "cakes",
+    "nutritionalInformation": null,
+    "weight": 650,
+    "milkOptions": null,
+    "dietaryTags": ["dairy"]
+  },
+  {
+    "name": "Crunch Butter Kinder (Dairy)",
+    "description": "Butter crunch cake with Kinder chocolate topping.",
+    "imageURL": "https://firebasestorage.googleapis.com/v0/b/kakaobarzilai-5c065.firebasestorage.app/o/CrunchFerreroRocherIconpng.png?alt=media&token=703e4910-a1f1-47f4-b864-9a8d5e6f1000",
+    "rating": null,
+    "category": "cakes",
+    "nutritionalInformation": null,
+    "weight": 650,
+    "milkOptions": null,
+    "dietaryTags": ["dairy"]
+  },
+  {
+    "name": "Cheesecake with Biscuit Crumbs (Sugar Free)",
+    "description": "Classic cheesecake with biscuit crumbs, sugar-free.",
+    "imageURL": "https://firebasestorage.googleapis.com/v0/b/kakaobarzilai-5c065.firebasestorage.app/o/CheesecakewithBiscuitCrumbsSugarFree-removebg-preview.png?alt=media&token=4965e273-73c6-4746-8841-7efe8cffbc18",
+    "rating": 4.7,
+    "category": "cakes",
+    "nutritionalInformation": null,
+    "weight": 650,
+    "milkOptions": null,
+    "dietaryTags": ["dairy"]
+  },
+  {
+    "name": "Cheesecake with Biscuit Crumbs",
+    "description": "Rich and creamy cheesecake with biscuit crumbs.",
+    "imageURL": "https://firebasestorage.googleapis.com/v0/b/kakaobarzilai-5c065.firebasestorage.app/o/CheesecakewithBiscuitCrumbsSugarFree-removebg-preview.png?alt=media&token=4965e273-73c6-4746-8841-7efe8cffbc18",
+    "rating": 4.7,
+    "category": "cakes",
+    "nutritionalInformation": null,
+    "weight": 650,
+    "milkOptions": null,
+    "dietaryTags": ["dairy"]
+  },
+  {
+    "name": "Pes Mousse Blondie (Dairy)",
+    "description": "White chocolate mousse cake with pecan ganache and blondie chocolate topping.",
+    "imageURL": "https://firebasestorage.googleapis.com/v0/b/kakaobarzilai-5c065.firebasestorage.app/o/81dbb9_366d3043802d4b05a08cdd5fabafafea_mv2-removebg-preview.png?alt=media&token=70079367-ec10-4434-b9f9-daad23abd499",
+    "rating": null,
+    "category": "cakes",
+    "nutritionalInformation": null,
+    "weight": 650,
+    "milkOptions": null,
+    "dietaryTags": ["dairy"]
+  },
+  {
+    "name": "Milky Mille-Feuille (Dairy)",
+    "description": "Layered mille-feuille cake with pastry cream and sweet crust, topped with decorative icing.",
+    "imageURL": "https://firebasestorage.googleapis.com/v0/b/kakaobarzilai-5c065.firebasestorage.app/o/81dbb9_db590004b0ad4c338c5fab93a76c5f25_mv2-removebg-preview.png?alt=media&token=ecdce0e7-4ce9-4525-8b6e-236d0916444b",
+    "rating": null,
+    "category": "cakes",
+    "nutritionalInformation": null,
+    "weight": 650,
+    "milkOptions": null,
+    "dietaryTags": ["dairy"]
+  },
+  {
+    "name": "Red Velvet Cake (Dairy)",
+    "description": "Layers of red velvet sponge, cream cheese mousse, and rich dairy cream.",
+    "imageURL": "https://firebasestorage.googleapis.com/v0/b/kakaobarzilai-5c065.firebasestorage.app/o/81dbb9_9da5d42346c24d86871ea51502ea465e_mv2-removebg-preview.png?alt=media&token=c2997a60-db19-4602-9d2e-c101c1ce7f81",
+    "rating": null,
+    "category": "cakes",
+    "nutritionalInformation": null,
+    "weight": 650,
+    "milkOptions": null,
+    "dietaryTags": ["dairy"]
+  },
+  {
+    "name": "Biscuit Cake (Dairy)",
+    "description": "Layers of biscuit cream and vanilla cream topped with rich chocolate ganache.",
+    "imageURL": "https://firebasestorage.googleapis.com/v0/b/kakaobarzilai-5c065.firebasestorage.app/o/81dbb9_e828bff726434691889e434a2b771b55_mv2-removebg-preview.png?alt=media&token=a739744b-0169-43be-8205-ab8256567299",
+    "rating": null,
+    "category": "cakes",
+    "nutritionalInformation": null,
+    "weight": 650,
+    "milkOptions": null,
+    "dietaryTags": ["dairy"]
+  },
+  {
+    "name": "Lotos Cheesecake (Dairy)",
+    "description": "Creamy cheesecake on a crunchy Lotos biscuit base with smooth Lotos spread on top.",
+    "imageURL": "https://firebasestorage.googleapis.com/v0/b/kakaobarzilai-5c065.firebasestorage.app/o/81dbb9_35d94e14a65042d9b5f6bef3ccd3c929_mv2-removebg-preview.png?alt=media&token=caa4a0ea-f0d2-45ae-8b3a-d17aac13db3e",
+    "rating": null,
+    "category": "cakes",
+    "nutritionalInformation": null,
+    "weight": 650,
+    "milkOptions": null,
+    "dietaryTags": ["dairy"]
+  },
+  {
+    "name": "Chocolate Hazelnut Mousse Cake (Dairy)",
+    "description": "Layered chocolate mousse cake combined with hazelnut cream and white chocolate dots.",
+    "imageURL": "https://firebasestorage.googleapis.com/v0/b/kakaobarzilai-5c065.firebasestorage.app/o/81dbb9_fe5ab1d18fdf49a4910684c01c165423_mv2-removebg-preview.png?alt=media&token=42da2607-11b8-4f55-a923-64201d945d88",
+    "rating": null,
+    "category": "cakes",
+    "nutritionalInformation": null,
+    "weight": 650,
+    "milkOptions": null,
+    "dietaryTags": ["dairy"]
+  }
+]
