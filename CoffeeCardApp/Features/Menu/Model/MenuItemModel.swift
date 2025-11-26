@@ -25,11 +25,21 @@ enum DrinkSize: String, Codable, CaseIterable, Identifiable {
     
     case small
     case large
+    case none
     
     var title: String {
         switch self {
         case .small: return "S"
         case .large: return "L"
+        case .none: return "N"
+        }
+    }
+    
+    var secondTitle: String {
+        switch self {
+        case .small: return "Small"
+        case .large: return "Large"
+        case .none: return "None"
         }
     }
     
@@ -37,6 +47,7 @@ enum DrinkSize: String, Codable, CaseIterable, Identifiable {
         switch self {
         case .small: return "small"
         case .large: return "large"
+        case .none: return "None"
         }
     }
 }

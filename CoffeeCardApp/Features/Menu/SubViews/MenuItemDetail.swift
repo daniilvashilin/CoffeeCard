@@ -7,7 +7,7 @@ struct MenuItemDetail: View {
     private let imageSize: CGFloat = 150
     private let cornerRadius: CGFloat = 16
     @State private var selectedMilkOption: MilkType? = .regular
-    @State private var selectedSize: DrinkSize? = .small
+    @State private var selectedSize: DrinkSize? = Optional.none
     var body: some View {
         
         VStack(spacing: 0) {
@@ -54,7 +54,7 @@ struct MenuItemDetail: View {
                             .lineLimit(1)
                     }
                     .frame(width: 110, alignment: .leading)
-
+                    
                     HStack(spacing: 10) {
                         if let milkOptions = item.milkOptions, !milkOptions.isEmpty {
                             ForEach(milkOptions, id: \.self) { milk in
@@ -76,23 +76,30 @@ struct MenuItemDetail: View {
                         } else {
                             ZStack {
                                 Circle()
-                                    .stroke(Color.red, lineWidth: 2)
+                                    .fill(.primaryText)
+                                    .stroke(.red)
                                     .frame(width: 38, height: 38)
                                 Image(systemName: "nosign")
-                                    .font(.system(size: 16, weight: .bold))
+                                    .font(.system(size: 24, weight: .bold))
                                     .foregroundColor(.red)
                             }
                         }
                     }
                 }
-
+                
                 // MARK: SIZE OPTION UI
                 HStack(alignment: .center, spacing: 12) {
-                    Text("Select Size:")
-                        .font(.caption)
-                        .foregroundStyle(.primaryText)
-                        .frame(width: 110, alignment: .leading)
-
+                    VStack(alignment: .leading, spacing: 2) {
+                        Text("Selected Size:")
+                            .font(.caption)
+                            .foregroundStyle(.primaryText)
+                        Text(selectedSize?.secondTitle ?? "None")
+                            .font(.subheadline.bold())
+                            .foregroundStyle(selectedMilkOption?.milkTypeColor ?? .primaryText)
+                            .lineLimit(1)
+                    }
+                    .frame(width: 110, alignment: .leading)
+                    
                     HStack(spacing: 14) {
                         if let sizeOptions = item.DrinkSizeOptions, !sizeOptions.isEmpty {
                             ForEach(sizeOptions, id: \.self) { size in
@@ -114,10 +121,11 @@ struct MenuItemDetail: View {
                         } else {
                             ZStack {
                                 Circle()
-                                    .stroke(Color.red, lineWidth: 2)
+                                    .fill(.primaryText)
+                                    .stroke(.red)
                                     .frame(width: 38, height: 38)
                                 Image(systemName: "nosign")
-                                    .font(.system(size: 16, weight: .bold))
+                                    .font(.system(size: 24, weight: .bold))
                                     .foregroundColor(.red)
                             }
                         }

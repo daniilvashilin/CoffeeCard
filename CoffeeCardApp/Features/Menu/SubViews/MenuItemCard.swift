@@ -20,22 +20,25 @@ struct MenuItemCard: View {
     private var imageView: some View {
         if let urlString = item.imageURL,
            let url = URL(string: urlString) {
-            
+
             AsyncImage(url: url) { phase in
                 switch phase {
                 case .empty:
                     shimmerPlaceholder
-                    
+
                 case .success(let image):
                     image
                         .resizable()
                         .scaledToFill()
                         .frame(width: imageSize, height: imageSize)
                         .clipShape(RoundedRectangle(cornerRadius: cornerRadius))
-                    
-                case .failure:
+
+                case .failure(let error):
                     placeholderImage
-                    
+                        .onAppear {
+                            print("❌ AsyncImage FAILURE for \(item.name): \(error.localizedDescription)")
+                        }
+
                 @unknown default:
                     placeholderImage
                 }
