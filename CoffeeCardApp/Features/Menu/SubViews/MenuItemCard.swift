@@ -31,7 +31,7 @@ struct MenuItemCard: View {
                         .frame(width: imageSize, height: imageSize)
                         .clipShape(RoundedRectangle(cornerRadius: cornerRadius))
                     
-                case .failure(let error):
+                case .failure(_):
                     placeholderImage
                         .debugLog("AsyncImage failed for \(item.name)")
                     

@@ -7,16 +7,6 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil
     ) -> Bool {
         FirebaseApp.configure()
-        
-//        Task {
-//            do {
-//                try await SeedService().seedMenuFromJSONUpsert(jsonFile: "CakesSeed")
-//                print("🍰 Cakes upsert finished")
-//            } catch {
-//                print("❌ Cakes upsert failed:", error)
-//            }
-//        }
-        
         return true
     }
 }

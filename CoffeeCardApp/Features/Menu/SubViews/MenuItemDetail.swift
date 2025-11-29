@@ -23,9 +23,6 @@ struct MenuItemDetail: View {
                 cornerRadius: cornerRadius,
                 kosherTag: item.kosherTag(for: selectedMilkOption)
             )
-            .ignoresSafeArea(edges: .top)
-            Divider()
-                .padding()
             
             // MARK: - Options (milk & size)
             VStack(alignment: .leading, spacing: 18) {
@@ -36,12 +33,12 @@ struct MenuItemDetail: View {
                 SizeSelectorView(sizeOptions: item.drinkSizeOptions, selectedSize: $selectedSize)
             }
             .frame(maxWidth: .infinity, alignment: .leading)
-            .padding(.horizontal)
+            .padding()
             .padding(.bottom, 8)
             
             
             Divider()
-                .padding()
+                .padding(.horizontal)
 
             ScrollView {
                 VStack(alignment: .leading, spacing: 12) {
@@ -59,6 +56,7 @@ struct MenuItemDetail: View {
                 .padding(.bottom)
             }
         }
+        .ignoresSafeArea(edges: .top)
     }
 }
 
