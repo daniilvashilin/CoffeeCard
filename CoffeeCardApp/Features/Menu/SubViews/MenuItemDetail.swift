@@ -33,7 +33,7 @@ struct MenuItemDetail: View {
                 MilkBaseSelector(milkOptions: item.milkOptions, selectedMilkOption: $selectedMilkOption)
                 
                 // Size option
-                SizeSelectorView(sizeOptions: item.DrinkSizeOptions, selectedSize: $selectedSize)
+                SizeSelectorView(sizeOptions: item.drinkSizeOptions, selectedSize: $selectedSize)
             }
             .frame(maxWidth: .infinity, alignment: .leading)
             .padding(.horizontal)

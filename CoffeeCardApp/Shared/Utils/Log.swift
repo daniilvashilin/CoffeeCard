@@ -1,4 +1,4 @@
-import Foundation
+import SwiftUI
 
 enum Log {
     static func info(_ message: String) {
@@ -15,5 +15,15 @@ enum Log {
             print("❌", message)
         }
 #endif
+    }
+}
+
+
+extension View {
+    func debugLog(_ message: String) -> some View {
+        #if DEBUG
+        print(message)
+        #endif
+        return self
     }
 }

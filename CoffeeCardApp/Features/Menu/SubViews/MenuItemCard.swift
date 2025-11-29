@@ -14,31 +14,27 @@ struct MenuItemCard: View {
         .padding()
     }
     
-    // MARK: - Image
-    
     @ViewBuilder
     private var imageView: some View {
         if let urlString = item.imageURL,
            let url = URL(string: urlString) {
-
+            
             AsyncImage(url: url) { phase in
                 switch phase {
                 case .empty:
                     shimmerPlaceholder
-
+                    
                 case .success(let image):
                     image
                         .resizable()
                         .scaledToFill()
                         .frame(width: imageSize, height: imageSize)
                         .clipShape(RoundedRectangle(cornerRadius: cornerRadius))
-
+                    
                 case .failure(let error):
                     placeholderImage
-                        .onAppear {
-                            print("❌ AsyncImage FAILURE for \(item.name): \(error.localizedDescription)")
-                        }
-
+                        .debugLog("AsyncImage failed for \(item.name)")
+                    
                 @unknown default:
                     placeholderImage
                 }
@@ -80,7 +76,7 @@ struct MenuItemCard: View {
     private var titleView: some View {
         Text(item.name)
             .font(.caption)
-            .foregroundStyle(.primary)
+            .foregroundStyle(.primaryText)
             .multilineTextAlignment(.center)
             .frame(maxWidth: imageSize)
             .lineLimit(2)
