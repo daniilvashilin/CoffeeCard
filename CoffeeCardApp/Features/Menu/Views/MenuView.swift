@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct MenuView: View {
+    @Binding var isTabBarHidden: Bool
     @StateObject private var viewModel = MenuViewModel(
         repository: FirestoreMenuRepository()
     )
@@ -18,7 +19,7 @@ struct MenuView: View {
                     ForEach(CatalogTypeModel.allCases) { category in
                         NavigationLink {
                             CategoryItemsView(category: category,
-                                              viewModel: viewModel)
+                                              viewModel: viewModel, isTabBarHidden: $isTabBarHidden)
                         } label: {
                             CategoryCard(category: category)
                         }
@@ -28,6 +29,8 @@ struct MenuView: View {
                 .padding(.bottom, 80)
             }
             .navigationTitle("Menu")
+            .scrollContentBackground(.hidden)   
+            .background(Color.backgroundApp)
             .task {
                 await viewModel.loadMenu()      // <-- important
             }
@@ -35,7 +38,4 @@ struct MenuView: View {
     }
 }
 
-#Preview {
-    MenuView()
-}
 

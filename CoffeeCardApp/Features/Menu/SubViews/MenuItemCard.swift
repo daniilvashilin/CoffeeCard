@@ -1,28 +1,35 @@
 import SwiftUI
 
 struct MenuItemCard: View {
-    private let imageSize: CGFloat = 80
-    private let cornerRadius: CGFloat = 16
-    
+    private let baseImageSize: CGFloat = 80
+    private let baseCornerRadius: CGFloat = 16
+    private let basePadding: CGFloat = 12
+
     var item: MenuItemModel
     
     var body: some View {
-        VStack(alignment: .center, spacing: 8) {
-            imageView
-            titleView
+        let imageSize = baseImageSize.ds
+        let cornerRadius = baseCornerRadius.ds
+        let padding = basePadding.ds
+        
+        VStack(alignment: .center, spacing: 8.ds) {
+            imageView(imageSize: imageSize, cornerRadius: cornerRadius)
+            titleView(maxWidth: imageSize)
         }
-        .padding()
+        .padding(padding)
     }
     
+    // MARK: - Image
+    
     @ViewBuilder
-    private var imageView: some View {
+    private func imageView(imageSize: CGFloat, cornerRadius: CGFloat) -> some View {
         if let urlString = item.imageURL,
            let url = URL(string: urlString) {
             
             AsyncImage(url: url) { phase in
                 switch phase {
                 case .empty:
-                    shimmerPlaceholder
+                    shimmerPlaceholder(imageSize: imageSize, cornerRadius: cornerRadius)
                     
                 case .success(let image):
                     image
@@ -32,19 +39,19 @@ struct MenuItemCard: View {
                         .clipShape(RoundedRectangle(cornerRadius: cornerRadius))
                     
                 case .failure(_):
-                    placeholderImage
+                    placeholderImage(imageSize: imageSize, cornerRadius: cornerRadius)
                         .debugLog("AsyncImage failed for \(item.name)")
                     
                 @unknown default:
-                    placeholderImage
+                    placeholderImage(imageSize: imageSize, cornerRadius: cornerRadius)
                 }
             }
         } else {
-            placeholderImage
+            placeholderImage(imageSize: imageSize, cornerRadius: cornerRadius)
         }
     }
     
-    private var shimmerPlaceholder: some View {
+    private func shimmerPlaceholder(imageSize: CGFloat, cornerRadius: CGFloat) -> some View {
         ZStack {
             RoundedRectangle(cornerRadius: cornerRadius)
                 .fill(Color.gray.opacity(0.15))
@@ -58,7 +65,7 @@ struct MenuItemCard: View {
         .frame(width: imageSize, height: imageSize)
     }
     
-    private var placeholderImage: some View {
+    private func placeholderImage(imageSize: CGFloat, cornerRadius: CGFloat) -> some View {
         Image(systemName: "photo")
             .resizable()
             .scaledToFit()
@@ -73,12 +80,12 @@ struct MenuItemCard: View {
     
     // MARK: - Title
     
-    private var titleView: some View {
+    private func titleView(maxWidth: CGFloat) -> some View {
         Text(item.name)
-            .font(.caption)
+            .font(.system(size: 11.ds, weight: .medium)) 
             .foregroundStyle(.primaryText)
             .multilineTextAlignment(.center)
-            .frame(maxWidth: imageSize)
+            .frame(maxWidth: maxWidth)
             .lineLimit(2)
             .minimumScaleFactor(0.9)
             .fixedSize(horizontal: false, vertical: true)

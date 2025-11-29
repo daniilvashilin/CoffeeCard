@@ -3,20 +3,40 @@ import SwiftUI
 struct SizeSelectorView: View {
     var sizeOptions: [DrinkSize]?
     @Binding var selectedSize: DrinkSize?
+    
+    // MARK: Base settings
+    private let baseOuterSpacing: CGFloat = 12
+    private let baseCircleSize: CGFloat = 38
+    
+    private var labelWidth: CGFloat {
+        switch DeviceWidthClass.current {
+        case .widePhone:
+            return 120.ds
+        case .compactPhone:
+            return 150.ds
+        case .other:
+            return 130.ds
+        }
+    }
+    
     var body: some View {
-        HStack(alignment: .center, spacing: 12) {
-            VStack(alignment: .leading, spacing: 2) {
+        HStack(alignment: .center, spacing: baseOuterSpacing.ds) {
+            
+            // LEFT INFO TEXT
+            VStack(alignment: .leading, spacing: 2.ds) {
                 Text("Selected Size:")
                     .font(.caption)
                     .foregroundStyle(.primaryText)
+                
                 Text(selectedSize?.secondTitle ?? "None")
                     .font(.subheadline.bold())
-                    
                     .lineLimit(1)
+                    .minimumScaleFactor(0.85)
             }
-            .frame(width: 110, alignment: .leading)
+            .frame(width: labelWidth, alignment: .leading)
             
-            HStack(spacing: 14) {
+            // SIZE OPTIONS
+            HStack(spacing: 14.ds) {
                 if let sizeOptions, !sizeOptions.isEmpty {
                     ForEach(sizeOptions, id: \.self) { size in
                         Button {
@@ -25,7 +45,9 @@ struct SizeSelectorView: View {
                             ZStack {
                                 Circle()
                                     .fill(.primaryText)
-                                    .frame(width: 38, height: 38)
+                                    .frame(width: baseCircleSize.ds,
+                                           height: baseCircleSize.ds)
+                                
                                 Text(size.title)
                                     .foregroundStyle(.buttonText)
                                     .font(.headline.bold())
@@ -39,14 +61,16 @@ struct SizeSelectorView: View {
                         Circle()
                             .fill(.primaryText)
                             .stroke(.red)
-                            .frame(width: 38, height: 38)
+                            .frame(width: baseCircleSize.ds,
+                                   height: baseCircleSize.ds)
+                        
                         Image(systemName: "nosign")
-                            .font(.system(size: 24, weight: .bold))
+                            .font(.system(size: 24.ds, weight: .bold))
                             .foregroundColor(.red)
                     }
                 }
             }
         }
+        .padding(.horizontal, 4.ds)
     }
 }
-

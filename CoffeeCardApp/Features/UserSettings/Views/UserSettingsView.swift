@@ -41,6 +41,8 @@ struct UserSettingsView: View {
                     // Logount mehod 
                 }
             }
+            .scrollContentBackground(.hidden)
+            .background(.backgroundApp)
         }
     }
 }

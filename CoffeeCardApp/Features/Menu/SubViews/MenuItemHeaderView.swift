@@ -2,20 +2,26 @@ import SwiftUI
 
 struct MenuItemHeaderView: View {
     let item: MenuItemModel
-    let imageSize: CGFloat
-    let cornerRadius: CGFloat
+    let imageSize: CGFloat      // базовый размер, будем масштабировать
+    let cornerRadius: CGFloat   // базовый radius
     let kosherTag: DietaryTag?
+    
+    // Базовые константы для заголовка
+    private let baseHeaderHeight: CGFloat = 250
+    private let baseImageTopOffset: CGFloat = 80
+    private let baseKosherSize: CGFloat = 46
+    private let baseKosherPadding: CGFloat = 16
     
     var body: some View {
         ZStack(alignment: .top) {
             Image(.itemBackground)
                 .resizable()
                 .scaledToFill()
-                .frame(height: 250)
+                .frame(height: baseHeaderHeight.ds)
                 .clipped()
             
             imageView
-                .padding(.top, 80)
+                .padding(.top, baseImageTopOffset.ds)
             
             VStack {
                 Spacer()
@@ -23,16 +29,21 @@ struct MenuItemHeaderView: View {
                     if let kosherTag {
                         Image(kosherTag.imageName)
                             .resizable()
-                            .frame(width: 46, height: 46)
-                            .padding(.leading, 16)
-                            .padding(.bottom, 16)
+                            .frame(
+                                width: baseKosherSize.ds,
+                                height: baseKosherSize.ds
+                            )
+                            .padding(.leading, baseKosherPadding.ds)
+                            .padding(.bottom, baseKosherPadding.ds)
                     }
                     Spacer()
                 }
             }
         }
-        .frame(height: 250)
+        .frame(height: baseHeaderHeight.ds)
     }
+    
+    // MARK: - Image
     
     @ViewBuilder
     private var imageView: some View {
@@ -48,8 +59,13 @@ struct MenuItemHeaderView: View {
                     image
                         .resizable()
                         .scaledToFill()
-                        .frame(width: imageSize, height: imageSize)
-                        .clipShape(RoundedRectangle(cornerRadius: cornerRadius))
+                        .frame(
+                            width: imageSize.ds,
+                            height: imageSize.ds
+                        )
+                        .clipShape(
+                            RoundedRectangle(cornerRadius: cornerRadius.ds)
+                        )
                     
                 case .failure:
                     placeholderImage
@@ -62,41 +78,41 @@ struct MenuItemHeaderView: View {
             placeholderImage
         }
     }
+    
     private var shimmerPlaceholder: some View {
         ZStack {
-            RoundedRectangle(cornerRadius: cornerRadius)
+            RoundedRectangle(cornerRadius: cornerRadius.ds)
                 .fill(Color.gray.opacity(0.15))
             
             SmallShimmerDiagonal()
                 .mask(
-                    RoundedRectangle(cornerRadius: cornerRadius)
-                        .frame(width: imageSize, height: imageSize)
+                    RoundedRectangle(cornerRadius: cornerRadius.ds)
+                        .frame(width: imageSize.ds, height: imageSize.ds)
                 )
         }
-        .frame(width: imageSize, height: imageSize)
+        .frame(width: imageSize.ds, height: imageSize.ds)
     }
     
     private var placeholderImage: some View {
         Image(systemName: "photo")
             .resizable()
             .scaledToFit()
-            .frame(width: imageSize, height: imageSize)
+            .frame(width: imageSize.ds, height: imageSize.ds)
             .foregroundColor(.secondary)
             .background(
-                RoundedRectangle(cornerRadius: cornerRadius)
+                RoundedRectangle(cornerRadius: cornerRadius.ds)
                     .fill(Color.gray.opacity(0.1))
             )
-            .clipShape(RoundedRectangle(cornerRadius: cornerRadius))
+            .clipShape(RoundedRectangle(cornerRadius: cornerRadius.ds))
     }
     
-    // MARK: - Title
-    
+    // MARK: - Title (если понадобится)
     private var titleView: some View {
         Text(item.name)
             .font(.caption)
             .foregroundStyle(.primary)
             .multilineTextAlignment(.center)
-            .frame(maxWidth: imageSize)
+            .frame(maxWidth: imageSize.ds)
             .lineLimit(2)
             .minimumScaleFactor(0.9)
             .fixedSize(horizontal: false, vertical: true)
