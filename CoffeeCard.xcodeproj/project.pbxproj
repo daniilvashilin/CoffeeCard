@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		494511702EDAEEF700F43F9D /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 4945116F2EDAEEF700F43F9D /* Lottie */; };
 		49E62B632EB7CFCC009ED841 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 49E62B622EB7CFCC009ED841 /* FirebaseAnalytics */; };
 		49E62B652EB7CFCC009ED841 /* FirebaseAppCheck in Frameworks */ = {isa = PBXBuildFile; productRef = 49E62B642EB7CFCC009ED841 /* FirebaseAppCheck */; };
 		49E62B672EB7CFCC009ED841 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 49E62B662EB7CFCC009ED841 /* FirebaseAuth */; };
@@ -18,6 +19,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		494511672EDAE64C00F43F9D /* CoffeeCard-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "CoffeeCard-Info.plist"; sourceTree = "<group>"; };
 		4986D1FF2EACC38C00368148 /* KakaoBarzilai.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KakaoBarzilai.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -36,6 +38,7 @@
 			files = (
 				49E62B652EB7CFCC009ED841 /* FirebaseAppCheck in Frameworks */,
 				49E62B6F2EB7CFCC009ED841 /* FirebaseFunctions in Frameworks */,
+				494511702EDAEEF700F43F9D /* Lottie in Frameworks */,
 				49E62B672EB7CFCC009ED841 /* FirebaseAuth in Frameworks */,
 				49E62B6B2EB7CFCC009ED841 /* FirebaseCrashlytics in Frameworks */,
 				49E62B692EB7CFCC009ED841 /* FirebaseCore in Frameworks */,
@@ -51,6 +54,7 @@
 		4986D1F62EACC38C00368148 = {
 			isa = PBXGroup;
 			children = (
+				494511672EDAE64C00F43F9D /* CoffeeCard-Info.plist */,
 				4986D2012EACC38C00368148 /* CoffeeCardApp */,
 				4986D2002EACC38C00368148 /* Products */,
 			);
@@ -92,6 +96,7 @@
 				49E62B6C2EB7CFCC009ED841 /* FirebaseFirestore */,
 				49E62B6E2EB7CFCC009ED841 /* FirebaseFunctions */,
 				49E62B702EB7CFCC009ED841 /* FirebaseStorage */,
+				4945116F2EDAEEF700F43F9D /* Lottie */,
 			);
 			productName = KakaoExpressBrazilai;
 			productReference = 4986D1FF2EACC38C00368148 /* KakaoBarzilai.app */;
@@ -123,6 +128,7 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				49E62B612EB7CFCC009ED841 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				4945116E2EDAEEF700F43F9D /* XCRemoteSwiftPackageReference "lottie-ios" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 4986D2002EACC38C00368148 /* Products */;
@@ -283,6 +289,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "CoffeeCard-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = CoffeeCard;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
@@ -290,6 +297,7 @@
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreenSplash;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
@@ -324,6 +332,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "CoffeeCard-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = CoffeeCard;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
@@ -331,6 +340,7 @@
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreenSplash;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
@@ -377,6 +387,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		4945116E2EDAEEF700F43F9D /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/airbnb/lottie-ios.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.5.2;
+			};
+		};
 		49E62B612EB7CFCC009ED841 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
@@ -388,6 +406,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		4945116F2EDAEEF700F43F9D /* Lottie */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4945116E2EDAEEF700F43F9D /* XCRemoteSwiftPackageReference "lottie-ios" */;
+			productName = Lottie;
+		};
 		49E62B622EB7CFCC009ED841 /* FirebaseAnalytics */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 49E62B612EB7CFCC009ED841 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;

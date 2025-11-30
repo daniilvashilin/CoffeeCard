@@ -14,14 +14,16 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 @main
 struct CoffeeCardApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
+
     init() {
         let MB = 1024 * 1024
         URLCache.shared.memoryCapacity = 50 * MB
         URLCache.shared.diskCapacity   = 200 * MB
     }
+
     var body: some Scene {
         WindowGroup {
-            RootView()
+            AppRootView()
         }
     }
 }
