@@ -2,7 +2,7 @@ import SwiftUI
 
 struct AppRootView: View {
     @State private var showSplash: Bool = true
-
+    @StateObject private var session = SessionViewModel()
     var body: some View {
         ZStack {
             RootView()

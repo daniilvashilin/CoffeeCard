@@ -5,6 +5,7 @@ struct RootView: View {
     private let tabs = CustomTabModel.allCases
     @StateObject private var promoViewModel =
     PromoViewModel(repository: FirestorePromoRepository())
+    @EnvironmentObject var session: SessionViewModel
     @State private var isTabHidden: Bool = false
     var body: some View {
         ZStack {
