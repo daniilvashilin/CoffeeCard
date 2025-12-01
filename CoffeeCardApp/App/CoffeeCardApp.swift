@@ -24,6 +24,8 @@ struct CoffeeCardApp: App {
     var body: some Scene {
         WindowGroup {
             AppRootView()
+//            LoginView()
+//            RegisterView()
         }
     }
 }
