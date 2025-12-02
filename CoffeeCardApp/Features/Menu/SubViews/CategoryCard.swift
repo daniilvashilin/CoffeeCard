@@ -4,8 +4,6 @@ import SwiftUI
 struct CategoryCard: View {
     let category: CatalogTypeModel
 
-    // Базовые размеры (для 13/14/15/16 Pro/Pro Max),
-    // дальше они масштабируются через .ds
     private let baseContainer: CGFloat = 80
     private let baseIcon: CGFloat = 48
     private let baseCorner: CGFloat = 24

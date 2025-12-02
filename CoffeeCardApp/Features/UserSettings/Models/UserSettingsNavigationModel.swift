@@ -54,7 +54,7 @@ enum UserSettingsModel: CaseIterable, Identifiable {
         case .feedback:
             FeedbackView()
         case .logout:
-            EmptyView() // тут можешь просто вызывать action вместо навигации
+            EmptyView() 
         }
     }
 }

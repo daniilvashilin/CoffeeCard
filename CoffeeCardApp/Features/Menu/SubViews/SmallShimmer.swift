@@ -7,7 +7,6 @@ struct SmallShimmerDiagonal: View {
         RoundedRectangle(cornerRadius: 16)
             .fill(Color.gray.opacity(0.15))
             .overlay(
-                // Диагональная полоса
                 LinearGradient(
                     gradient: Gradient(colors: [
                         .white.opacity(0.0),
@@ -17,9 +16,9 @@ struct SmallShimmerDiagonal: View {
                     startPoint: .topLeading,
                     endPoint: .bottomTrailing
                 )
-                .frame(width: 50, height: 120)  // узкая, вытянутая диагональ
-                .rotationEffect(.degrees(20))   // лёгкий угол для красоты
-                .offset(x: move * 120, y: move * 120) // двигаем по диагонали
+                .frame(width: 50, height: 120)
+                .rotationEffect(.degrees(20))
+                .offset(x: move * 120, y: move * 120) 
             )
             .onAppear {
                 withAnimation(.linear(duration: 1.2).repeatForever(autoreverses: false)) {

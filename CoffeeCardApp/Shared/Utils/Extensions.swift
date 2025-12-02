@@ -31,9 +31,6 @@ extension MenuItemModel {
         // weekdays
         if let days = availableWeekdays,
            let weekday = components.weekday {
-            // Weekday enum uses sunday...saturday (1...7 не мапится напрямую),
-            // тут потом можно сделать маппинг, когда будешь использовать.
-            // Пока можно оставить заглушкой или реализовать позже.
         }
         
         return true

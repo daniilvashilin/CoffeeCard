@@ -88,7 +88,7 @@ struct AddToCartBar: View {
                 HStack {
                     Text("Add")
                     Spacer()
-                    Text(priceText)          // строка с уже посчитанной ценой
+                    Text(priceText)          
                 }
                 .font(.system(size: 17.ds, weight: .semibold))
                 .foregroundColor(.white)

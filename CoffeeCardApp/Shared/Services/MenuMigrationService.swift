@@ -91,7 +91,6 @@ final class MenuMigrationService {
                 update["preparationTimeSeconds"] = 0
             }
             
-            // если нечего писать — пропускаем
             if update.isEmpty { continue }
             
             print("🔧 Migrating \(document.documentID) with fields: \(update.keys)")

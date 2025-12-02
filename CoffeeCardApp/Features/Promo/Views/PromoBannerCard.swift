@@ -4,11 +4,10 @@ struct PromoBannerCard: View {
     let imageURL: String
 
     @State private var isImageVisible = false
-    @State private var showShimmer = false   // ← показывать ли shimmer
+    @State private var showShimmer = false  
 
     var body: some View {
         ZStack {
-            // Фон-карта
             RoundedRectangle(cornerRadius: 16, style: .continuous)
                 .fill(
                     LinearGradient(
@@ -30,11 +29,10 @@ struct PromoBannerCard: View {
                     }
                 }
 
-            // Картинка
             AsyncImage(url: URL(string: imageURL)) { phase in
                 switch phase {
                 case .empty:
-                    Color.clear   // фон + shimmer уже работают
+                    Color.clear
                 case .success(let image):
                     image
                         .resizable()
@@ -59,8 +57,6 @@ struct PromoBannerCard: View {
         .clipped()
         .shadow(radius: 8, y: 4)
         .onAppear {
-            // маленькая задержка перед запуском shimmer
-            // если картинка успеет загрузиться раньше — shimmer вообще не появится
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.18) {
                 if !isImageVisible {
                     withAnimation(.easeIn(duration: 0.25)) {

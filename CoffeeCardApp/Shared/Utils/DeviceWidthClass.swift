@@ -53,7 +53,7 @@ enum DeviceMetrics {
         switch h {
         case ..<736:        // SE, 8
             return 0.8
-        case 736..<844:     // старые "обычные"
+        case 736..<844:
             return 0.9
         case 844..<926:     // 15/16, 14 Pro
             return 0.93

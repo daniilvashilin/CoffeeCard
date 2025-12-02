@@ -15,7 +15,6 @@ struct CachedMenuImageView: View {
                     .resizable()
                     .scaledToFill()
             } else {
-                // Placeholder + shimmer
                 ZStack {
                     RoundedRectangle(cornerRadius: cornerRadius)
                         .fill(Color.gray.opacity(0.15))

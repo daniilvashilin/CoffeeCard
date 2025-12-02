@@ -32,7 +32,6 @@ struct MenuView: View {
             .scrollContentBackground(.hidden)
             .background(Color.backgroundApp)
             .task {
-                // Don't refetch if we already have data in memory.
                 if viewModel.items.isEmpty {
                     await viewModel.loadMenu()
                 }

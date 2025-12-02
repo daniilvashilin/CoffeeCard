@@ -25,7 +25,6 @@ final class SeedService {
                                 ext: String = "json") async throws {
 
         guard let url = Bundle.main.url(forResource: jsonFile, withExtension: ext) else {
-            print("❌ \(jsonFile).json not found in bundle")
             return
         }
 
@@ -33,13 +32,11 @@ final class SeedService {
         let items = try JSONDecoder().decode([SeedMenuItem].self, from: data)
 
         if items.isEmpty {
-            print("ℹ️ Seed file empty")
             return
         }
 
         let snapshot = try await db.collection(collectionName).getDocuments()
 
-        // Собираем map: normalizedName -> DocumentSnapshot
         var existingByName: [String: QueryDocumentSnapshot] = [:]
         for doc in snapshot.documents {
             if let name = doc.data()["name"] as? String {
@@ -47,7 +44,6 @@ final class SeedService {
             }
         }
 
-        print("🌱 Upserting \(items.count) items...")
 
         let chunkSize = 400
         var start = 0
@@ -82,19 +78,15 @@ final class SeedService {
                 if let existingDoc = existingByName[key] {
                     // update existing
                     batch.setData(payload, forDocument: existingDoc.reference, merge: true)
-                    print("🔁 update:", item.name)
                 } else {
                     // add new
                     let ref = db.collection(collectionName).document()
                     batch.setData(payload, forDocument: ref)
-                    print("➕ add:", item.name)
                 }
             }
 
             try await batch.commit()
             start = end
         }
-
-        print("✅ Seed complete (upsert)")
     }
 }
