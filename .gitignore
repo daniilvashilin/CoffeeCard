@@ -6,10 +6,25 @@ xcuserdata/
 *.xcuserstate
 
 # SwiftPM
-/.build
+/.build/
 
 # Derived data
 DerivedData/
 
-# Firebase config (optional: if you don't want it in repo)
-# CoffeeCardApp/App/GoogleService-Info.plist
+# 🔐 Never commit private keys
+*.pem
+*.p12
+*.key
+*.der
+*.cer
+
+# 🔐 Firebase admin keys
+*ServiceAccount*.json
+*serviceAccount*.json
+*firebase-adminsdk*.json
+
+# 🔐 Secrets/credentials
+*.env
+*.env.*
+Secrets/
+Config/Keys/
