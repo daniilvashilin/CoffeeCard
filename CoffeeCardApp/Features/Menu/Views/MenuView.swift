@@ -29,10 +29,13 @@ struct MenuView: View {
                 .padding(.bottom, 80)
             }
             .navigationTitle("Menu")
-            .scrollContentBackground(.hidden)   
+            .scrollContentBackground(.hidden)
             .background(Color.backgroundApp)
             .task {
-                await viewModel.loadMenu()      // <-- important
+                // Don't refetch if we already have data in memory.
+                if viewModel.items.isEmpty {
+                    await viewModel.loadMenu()
+                }
             }
         }
     }

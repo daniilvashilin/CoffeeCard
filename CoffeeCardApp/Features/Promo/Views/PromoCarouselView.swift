@@ -25,7 +25,7 @@ struct PromoCarouselView: View {
         }
         .padding(.vertical, 24)
         .task {
-            await promoViewModel.loadPromos()
+            await promoViewModel.loadPromos(force: false)
         }
 }
 

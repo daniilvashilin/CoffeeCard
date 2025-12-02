@@ -164,7 +164,7 @@ struct MenuItemModel: Identifiable, Codable {
     // MARK: - CodingKeys (localId intentionally excluded)
     
     enum CodingKeys: String, CodingKey {
-        case documentId
+//        case documentId
         case name
         case description
         case imageURL

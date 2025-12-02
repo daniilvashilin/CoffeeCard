@@ -2,11 +2,11 @@ import SwiftUI
 
 struct MenuItemHeaderView: View {
     let item: MenuItemModel
-    let imageSize: CGFloat      // базовый размер, будем масштабировать
-    let cornerRadius: CGFloat   // базовый radius
+    let imageSize: CGFloat      
+    let cornerRadius: CGFloat
     let kosherTag: DietaryTag?
     
-    // Базовые константы для заголовка
+    
     private let baseHeaderHeight: CGFloat = 250
     private let baseImageTopOffset: CGFloat = 80
     private let baseKosherSize: CGFloat = 46
@@ -47,38 +47,16 @@ struct MenuItemHeaderView: View {
     
     @ViewBuilder
     private var imageView: some View {
-        if let urlString = item.imageURL,
-           let url = URL(string: urlString) {
-            
-            AsyncImage(url: url) { phase in
-                switch phase {
-                case .empty:
-                    shimmerPlaceholder
-                    
-                case .success(let image):
-                    image
-                        .resizable()
-                        .scaledToFill()
-                        .frame(
-                            width: imageSize.ds,
-                            height: imageSize.ds
-                        )
-                        .clipShape(
-                            RoundedRectangle(cornerRadius: cornerRadius.ds)
-                        )
-                    
-                case .failure:
-                    placeholderImage
-                    
-                @unknown default:
-                    placeholderImage
-                }
-            }
+        if item.imageURL != nil {
+            CachedMenuImageView(
+                urlString: item.imageURL,
+                size: imageSize.ds,
+                cornerRadius: cornerRadius.ds
+            )
         } else {
             placeholderImage
         }
     }
-    
     private var shimmerPlaceholder: some View {
         ZStack {
             RoundedRectangle(cornerRadius: cornerRadius.ds)
@@ -106,7 +84,7 @@ struct MenuItemHeaderView: View {
             .clipShape(RoundedRectangle(cornerRadius: cornerRadius.ds))
     }
     
-    // MARK: - Title (если понадобится)
+    // MARK: - Title
     private var titleView: some View {
         Text(item.name)
             .font(.caption)

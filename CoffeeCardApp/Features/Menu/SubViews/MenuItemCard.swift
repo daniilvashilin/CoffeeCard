@@ -23,29 +23,12 @@ struct MenuItemCard: View {
     
     @ViewBuilder
     private func imageView(imageSize: CGFloat, cornerRadius: CGFloat) -> some View {
-        if let urlString = item.imageURL,
-           let url = URL(string: urlString) {
-            
-            AsyncImage(url: url) { phase in
-                switch phase {
-                case .empty:
-                    shimmerPlaceholder(imageSize: imageSize, cornerRadius: cornerRadius)
-                    
-                case .success(let image):
-                    image
-                        .resizable()
-                        .scaledToFill()
-                        .frame(width: imageSize, height: imageSize)
-                        .clipShape(RoundedRectangle(cornerRadius: cornerRadius))
-                    
-                case .failure(_):
-                    placeholderImage(imageSize: imageSize, cornerRadius: cornerRadius)
-                        .debugLog("AsyncImage failed for \(item.name)")
-                    
-                @unknown default:
-                    placeholderImage(imageSize: imageSize, cornerRadius: cornerRadius)
-                }
-            }
+        if item.imageURL != nil {
+            CachedMenuImageView(
+                urlString: item.imageURL,
+                size: imageSize,
+                cornerRadius: cornerRadius
+            )
         } else {
             placeholderImage(imageSize: imageSize, cornerRadius: cornerRadius)
         }
@@ -82,7 +65,7 @@ struct MenuItemCard: View {
     
     private func titleView(maxWidth: CGFloat) -> some View {
         Text(item.name)
-            .font(.system(size: 11.ds, weight: .medium)) 
+            .font(.system(size: 11.ds, weight: .medium))
             .foregroundStyle(.primaryText)
             .multilineTextAlignment(.center)
             .frame(maxWidth: maxWidth)

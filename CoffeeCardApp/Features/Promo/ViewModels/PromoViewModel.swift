@@ -15,47 +15,39 @@ final class PromoViewModel: ObservableObject {
         self.repository = repository
     }
     
-    /// Универсальный метод загрузки:
-    /// 1) загружает кеш
-    /// 2) обновляет с сервера
-    /// 3) прелоад изображений
     @MainActor
     func loadPromos(force: Bool = false) async {
-        // Если уже загружали и не нужно принудительно — выходим
         if hasLoadedOnce && !force { return }
         
         isLoading = true
         errorMessage = nil
         
-        // --- 1. Сначала пробуем локальный кеш ---
         if !force, let cached = LocalPromoStore.shared.load() {
             self.promos = cached
+            preloadImages(for: cached)
         }
         
-        // --- 2. Загружаем свежие данные с Firestore ---
         do {
             let result = try await repository.fetchPromos()
             self.promos = result
             
-            // Сохраняем в кеш
+            // Save to disk cache
             LocalPromoStore.shared.save(result)
             
-            // Прелоад картинок
             preloadImages(for: result)
             
             hasLoadedOnce = true
         } catch {
-            // Показываем ошибку только если вообще нет данных
             if promos.isEmpty {
                 errorMessage = error.localizedDescription
             }
         }
-
+        
         isLoading = false
     }
     
-    // MARK: - Preload
     
+    // MARK: - Image Preloading
     private func preloadImages(for promos: [Promo]) {
         Task.detached { [weak self] in
             guard let self else { return }
