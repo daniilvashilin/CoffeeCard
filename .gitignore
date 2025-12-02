@@ -28,3 +28,6 @@ DerivedData/
 *.env.*
 Secrets/
 Config/Keys/
+
+# Firebase config (local only, do not commit)
+CoffeeCardApp/App/GoogleService-Info.plist
