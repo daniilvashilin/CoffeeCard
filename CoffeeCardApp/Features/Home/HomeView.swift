@@ -3,6 +3,8 @@ import SwiftUI
 struct HomeView: View {
     @State var showQRCard: Bool = false
     @ObservedObject var promoViewModel: PromoViewModel
+    @EnvironmentObject var session: SessionViewModel
+    
     var body: some View {
         VStack {
             HeaderView()

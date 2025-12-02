@@ -1,10 +1,3 @@
-//
-//  CoinsInfoView.swift
-//  KakaoExpressBrazilai
-//
-//  Created by Daniil Vaschilin on 15/11/2025.
-//
-
 import SwiftUI
 
 struct CoinsInfoView: View {
