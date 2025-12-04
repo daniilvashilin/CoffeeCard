@@ -1,28 +1,41 @@
 import SwiftUI
 
 struct LoginView: View {
-    @EnvironmentObject var session: SessionViewModel
+    @EnvironmentObject var sessionViewModel: SessionViewModel
+    @Binding var isTabBarHidden: Bool
+
     @State private var email = ""
     @State private var password = ""
-    
+
+    @Environment(\.dismiss) private var dismiss
+
     var body: some View {
         VStack(spacing: 20) {
             ImageTitle()
             CCTextField(title: "Email", text: $email, icon: "envelope")
             CCPasswordField(title: "Password", password: $password)
-            
+            NavigationLink {
+                RegisterView()
+            } label: {
+                Text("Not a member? Sign up")
+            }
+
             CCPrimaryButton(title: "Login") {
                 Task {
-                    await session.signIn(email: email, password: password)
+                    await sessionViewModel.signIn(email: email, password: password)
                 }
             }
         }
         .padding()
+        .onAppear {
+            isTabBarHidden = true
+        }
+        .onChange(of: sessionViewModel.isSignedIn) { isSignedIn in
+            if isSignedIn {
+                dismiss()
+            }
+        }
     }
-}
-
-#Preview {
-    LoginView()
 }
 
 struct ImageTitle: View {

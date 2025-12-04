@@ -16,7 +16,7 @@ struct RootView: View {
                 case .Menu:
                     MenuView(isTabBarHidden: $isTabHidden)
                 case .profile:
-                    UserSettingsView()
+                    UserSettingsView(isTabBarHidden: $isTabHidden)
                 }
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
