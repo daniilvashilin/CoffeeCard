@@ -30,8 +30,11 @@ struct LoginView: View {
         .onAppear {
             isTabBarHidden = true
         }
-        .onChange(of: sessionViewModel.isSignedIn) { isSignedIn in
-            if isSignedIn {
+        .onDisappear {
+            isTabBarHidden = false
+        }
+        .onChange(of: sessionViewModel.isSignedIn, initial: false) { oldValue, newValue in
+            if oldValue != newValue, newValue {
                 dismiss()
             }
         }
