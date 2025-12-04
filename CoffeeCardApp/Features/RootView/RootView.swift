@@ -12,7 +12,7 @@ struct RootView: View {
             Group {
                 switch selection {
                 case .home:
-                    HomeView(promoViewModel: promoViewModel)
+                    HomeView(promoViewModel: promoViewModel, isTabBarHidden: $isTabHidden)
                 case .Menu:
                     MenuView(isTabBarHidden: $isTabHidden)
                 case .profile:

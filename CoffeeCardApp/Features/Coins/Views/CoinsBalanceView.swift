@@ -24,7 +24,7 @@ struct CoinsBalanceView: View {
                 }
 
                 Text(coinsText)
-                    .foregroundStyle(.white)
+                    .foregroundStyle(.primaryText)
                     .font(.headline)
                     .opacity(contentOpacity)
 

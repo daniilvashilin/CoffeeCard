@@ -4,18 +4,6 @@ struct HeaderView: View {
     @EnvironmentObject private var session: SessionViewModel
     @State private var activeSheet: ActiveSheet?
     
-    enum ActiveSheet: Identifiable {
-        case coinsInfo
-        case login
-        
-        var id: Int {
-            switch self {
-            case .coinsInfo: return 0
-            case .login:     return 1
-            }
-        }
-    }
-    
     private var viewModel: HeaderViewModel {
         HeaderViewModel(user: session.user)
     }
@@ -33,9 +21,9 @@ struct HeaderView: View {
         .padding(.horizontal)
         .sheet(item: $activeSheet) { sheet in
             switch sheet {
-            case .coinsInfo:
+            case .contentShow:
                 CoinsInfoView()
-            case .login:
+            case .loginNeeded:
                 NavigationStack {
                     LoginView(isTabBarHidden: .constant(true))
                 }
@@ -45,9 +33,9 @@ struct HeaderView: View {
     
     private func handleTap() {
         if viewModel.isSignedIn {
-            activeSheet = .coinsInfo
+            activeSheet = .contentShow
         } else {
-            activeSheet = .login
+            activeSheet = .loginNeeded
         }
     }
 }
