@@ -20,6 +20,7 @@
 
 /* Begin PBXFileReference section */
 		494511672EDAE64C00F43F9D /* CoffeeCard-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "CoffeeCard-Info.plist"; sourceTree = "<group>"; };
+		494511CE2EE2092600F43F9D /* CoffeeCard.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CoffeeCard.entitlements; sourceTree = "<group>"; };
 		4986D1FF2EACC38C00368148 /* KakaoBarzilai.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KakaoBarzilai.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -54,6 +55,7 @@
 		4986D1F62EACC38C00368148 = {
 			isa = PBXGroup;
 			children = (
+				494511CE2EE2092600F43F9D /* CoffeeCard.entitlements */,
 				494511672EDAE64C00F43F9D /* CoffeeCard-Info.plist */,
 				4986D2012EACC38C00368148 /* CoffeeCardApp */,
 				4986D2002EACC38C00368148 /* Products */,
@@ -282,7 +284,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = "";
+				CODE_SIGN_ENTITLEMENTS = CoffeeCard.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = JYTXN6A6WV;
@@ -325,7 +327,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = "";
+				CODE_SIGN_ENTITLEMENTS = CoffeeCard.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = JYTXN6A6WV;
