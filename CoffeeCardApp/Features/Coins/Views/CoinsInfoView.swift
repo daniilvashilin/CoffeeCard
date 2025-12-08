@@ -1,10 +1,11 @@
 import SwiftUI
 
 struct CoinsInfoView: View {
+    let state: CoinsBalanceState
     var body: some View {
         VStack {
             HStack {
-                Text("The amount of:")
+                Text("The amount of: \(coinsText)")
                     .foregroundStyle(.primaryText)
                 Image(.coin)
                     .resizable()
@@ -12,8 +13,15 @@ struct CoinsInfoView: View {
             }
         }
     }
+    private var coinsText: String {
+        switch state {
+        case .locked, .zero:
+            return "0"
+        case .value(let amount):
+            return "\(amount)"
+        }
+    }
 }
 
-#Preview {
-    CoinsInfoView()
-}
+
+

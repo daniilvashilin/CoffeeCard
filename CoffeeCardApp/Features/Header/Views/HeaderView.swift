@@ -22,7 +22,7 @@ struct HeaderView: View {
         .sheet(item: $activeSheet) { sheet in
             switch sheet {
             case .contentShow:
-                CoinsInfoView()
+                CoinsInfoView(state: viewModel.coinsState)
             case .loginNeeded:
                 NavigationStack {
                     LoginView(isTabBarHidden: .constant(true))

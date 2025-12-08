@@ -88,7 +88,7 @@ struct QrDetailView: View {
                         .foregroundStyle(.white.opacity(0.6))
                         .font(.appSubtitle)
                 }
-                buttonsRow(payload: payload)
+                buttonsRow(payload: payload, qrImage: qrImage)
                     .padding(.bottom, 10.ds)
             }
             .padding(.horizontal, 24.ds)
@@ -99,18 +99,26 @@ struct QrDetailView: View {
     
     // MARK: - Buttons row
     
-    private func buttonsRow(payload: String) -> some View {
-        ZStack {
-            RoundedRectangle(cornerRadius: 10.ds)
-                .fill(.ultraThinMaterial)
-                .stroke(.accentApp, style: StrokeStyle())
-            ShareLink(item: payload) {
-                Image(systemName: "square.and.arrow.up")
-                Text("Share ID")
+    private func buttonsRow(payload: String, qrImage: UIImage) -> some View {
+            ZStack {
+                RoundedRectangle(cornerRadius: 10.ds)
+                    .fill(.ultraThinMaterial)
+                    .stroke(.accentApp, style: StrokeStyle())
+                
+                let shareItem = QRShareImage(image: qrImage)
+                
+                ShareLink(
+                    item: shareItem,
+                    preview: SharePreview("CoffeeCard QR", image: Image(uiImage: qrImage))
+                ) {
+                    HStack {
+                        Image(systemName: "square.and.arrow.up")
+                        Text("Share QR")
+                    }
+                }
+                .font(.appBody)
+                .foregroundColor(.accentApp)
             }
-            .font(.appBody)
-            .foregroundColor(.accentApp)
+            .frame(width: 150.ds, height: 40.ds)
         }
-        .frame(width: 150.ds, height: 40.ds)
-    }
 }

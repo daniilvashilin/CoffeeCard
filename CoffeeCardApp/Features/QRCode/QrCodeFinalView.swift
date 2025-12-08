@@ -28,12 +28,6 @@ struct QrCodeFinalView: View {
                 }
             }
         }
-        
-        .onChange(of: activeSheet) { _, newValue in
-            withAnimation {
-                isTabBarHidden = (newValue != nil)
-            }
-        }
     }
 }
 
