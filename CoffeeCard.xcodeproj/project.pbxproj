@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		494511702EDAEEF700F43F9D /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 4945116F2EDAEEF700F43F9D /* Lottie */; };
 		49E62B632EB7CFCC009ED841 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 49E62B622EB7CFCC009ED841 /* FirebaseAnalytics */; };
-		49E62B652EB7CFCC009ED841 /* FirebaseAppCheck in Frameworks */ = {isa = PBXBuildFile; productRef = 49E62B642EB7CFCC009ED841 /* FirebaseAppCheck */; };
 		49E62B672EB7CFCC009ED841 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 49E62B662EB7CFCC009ED841 /* FirebaseAuth */; };
 		49E62B692EB7CFCC009ED841 /* FirebaseCore in Frameworks */ = {isa = PBXBuildFile; productRef = 49E62B682EB7CFCC009ED841 /* FirebaseCore */; };
 		49E62B6B2EB7CFCC009ED841 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 49E62B6A2EB7CFCC009ED841 /* FirebaseCrashlytics */; };
@@ -37,7 +36,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				49E62B652EB7CFCC009ED841 /* FirebaseAppCheck in Frameworks */,
 				49E62B6F2EB7CFCC009ED841 /* FirebaseFunctions in Frameworks */,
 				494511702EDAEEF700F43F9D /* Lottie in Frameworks */,
 				49E62B672EB7CFCC009ED841 /* FirebaseAuth in Frameworks */,

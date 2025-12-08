@@ -27,6 +27,7 @@ struct User: Identifiable, Codable {
     var lastCoinsUpdate: Date?
     var coinsHistory: [CoinsHistoryEntry] = []
     var coinsHistoryUpdatedAt: Date?
+    var userCoinsProgressLevel: Int?
     
     var loyaltySystemRank: LoyaltySystemRank?
     var loyaltySystemRankUpdatedAt: Date?
@@ -87,8 +88,29 @@ enum Role: String, Codable {
 enum LoyaltySystemRank: String, Codable {
     case bronze = "BRONZE"
     case silver = "SILVER"
-    case gold = "GOLD"
+    case gold   = "GOLD"
     case platinum = "PLATINUM"
+}
+
+extension LoyaltySystemRank {
+    
+    var rankImageName: String {
+        switch self {
+        case .bronze:   return "badgeBronze"
+        case .silver:   return "badgeSilver"
+        case .gold:     return "badgeGold"
+        case .platinum: return "badgePlatinum"
+        }
+    }
+
+    var displayTitle: String {
+        switch self {
+        case .bronze:   return "Bronze"
+        case .silver:   return "Silver"
+        case .gold:     return "Gold"
+        case .platinum: return "Platinum"
+        }
+    }
 }
 
 struct Modification: Codable {

@@ -9,7 +9,6 @@ struct HomeView: View {
         VStack {
             HeaderView()
             PromoCarouselView(promoViewModel: promoViewModel)
-            
             HStack {
                 QrCodeFinalView(isTabBarHidden: $isTabBarHidden)
                 RoundedRectangle(cornerRadius: 10)

@@ -18,7 +18,6 @@ final class SessionViewModel: ObservableObject {
     ) {
         self.authService = authService
         self.userRepository = userRepository
-        
         Task {
             await loadCurrentUserIfLoggedIn()
         }
