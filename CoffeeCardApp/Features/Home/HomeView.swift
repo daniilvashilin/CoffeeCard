@@ -15,7 +15,6 @@ struct HomeView: View {
                     .fill(Color.gray)
                     .frame(width: 180.ds, height: 180.ds)
             }
-            .padding(.horizontal)
             .frame(maxWidth: .infinity,
                    maxHeight: .infinity,
                    alignment: .top)

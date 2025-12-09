@@ -18,7 +18,6 @@ struct HeaderView: View {
             }
         }
         .padding(.top)
-        .padding(.horizontal)
         .sheet(item: $activeSheet) { sheet in
             switch sheet {
             case .contentShow:

@@ -18,10 +18,11 @@ enum MenuCache {
             )
             return dir.appendingPathComponent(cacheFileName)
         } catch {
-            Log.error("Failed to get caches directory for menu cache", error)
+            Log.error("[MenuCache] Failed to get caches directory", error: error)
             return nil
         }
     }
+    
     
     /// Save menu items to disk as JSON.
     static func save(_ items: [MenuItemModel]) {
@@ -29,14 +30,14 @@ enum MenuCache {
         
         do {
             let encoder = JSONEncoder()
-            // You can add dateEncodingStrategy if you later add dates to MenuItemModel.
             let data = try encoder.encode(items)
             try data.write(to: url, options: .atomic)
-            Log.info("Menu cache saved: \(items.count) items")
+            Log.debug("[MenuCache] Saved \(items.count) items")
         } catch {
-            Log.error("Failed to save menu cache", error)
+            Log.error("[MenuCache] Failed to save menu cache", error: error)
         }
     }
+    
     
     /// Load menu items from disk if cache file exists.
     static func load() -> [MenuItemModel]? {
@@ -49,13 +50,14 @@ enum MenuCache {
             let data = try Data(contentsOf: url)
             let decoder = JSONDecoder()
             let items = try decoder.decode([MenuItemModel].self, from: data)
-            Log.info("Menu cache loaded: \(items.count) items")
+            Log.debug("[MenuCache] Loaded \(items.count) items from disk")
             return items
         } catch {
-            Log.error("Failed to load menu cache", error)
+            Log.error("[MenuCache] Failed to load menu cache", error: error)
             return nil
         }
     }
+    
     
     /// Remove cached menu file from disk.
     static func clear() {
@@ -66,9 +68,9 @@ enum MenuCache {
         
         do {
             try FileManager.default.removeItem(at: url)
-            Log.info("Menu cache cleared")
+            Log.debug("[MenuCache] Cleared menu cache file")
         } catch {
-            Log.error("Failed to clear menu cache", error)
+            Log.error("[MenuCache] Failed to clear menu cache", error: error)
         }
     }
 }

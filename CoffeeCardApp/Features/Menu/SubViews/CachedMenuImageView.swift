@@ -57,7 +57,7 @@ struct CachedMenuImageView: View {
                 uiImage = image
             }
         } catch {
-            Log.error("Failed to load image from \(urlString)", error)
+            Log.error("Failed to load image from \(urlString)", error: error)
         }
     }
 }

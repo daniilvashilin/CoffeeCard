@@ -1,6 +1,6 @@
+import Foundation
 
-
- enum ActiveSheet: Identifiable {
+enum ActiveSheet: Identifiable {
         case contentShow
         case loginNeeded
         

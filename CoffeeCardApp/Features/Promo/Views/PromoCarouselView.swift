@@ -43,7 +43,7 @@ struct PromoCarouselView: View {
             }
             .tabViewStyle(.page(indexDisplayMode: .never))
 
-            // dots те же
+            
             HStack(spacing: 6) {
                 ForEach(promoViewModel.promos.indices, id: \.self) { index in
                     Circle()

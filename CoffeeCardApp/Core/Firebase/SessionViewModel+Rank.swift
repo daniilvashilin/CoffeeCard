@@ -3,12 +3,14 @@ import FirebaseFirestore
 extension SessionViewModel {
     func syncRankIfNeeded() {
         guard var currentUser = user,
-              let userId = currentUser.id
-        else { return }
+              let userId = currentUser.id else {
+            return
+        }
 
         let newRank = currentUser.computedRank
 
         if currentUser.loyaltySystemRank == newRank {
+            Log.debug("[RankSync] Rank already up-to-date: \(newRank.rawValue)")
             return
         }
 
@@ -21,12 +23,13 @@ extension SessionViewModel {
                 "loyaltySystemRank": newRank.rawValue,
                 "loyaltySystemRankUpdatedAt": now
             ], merge: true) { [weak self] error in
+
                 if let error = error {
-                    print("❌ Failed to update rank:", error.localizedDescription)
+                    Log.error("[RankSync] Failed to update rank", error: error)
                     return
                 }
 
-                print("🏅 Rank updated to:", newRank.rawValue)
+                Log.debug("[RankSync] Rank updated to \(newRank.rawValue)")
 
                 Task { @MainActor in
                     currentUser.loyaltySystemRank = newRank

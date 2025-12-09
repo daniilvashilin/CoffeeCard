@@ -38,7 +38,6 @@ final class MenuMigrationService {
                 update["extraMilkPriceAgorot"] = [String: Int]()
             }
             
-            // side milk — ВСЕМ товарам ставим карты цен
             update["sideMilkPriceAgorot"] = regularSideMilk
             update["subsidizedSideMilkPriceAgorot"] = subsidizedSideMilk
             
@@ -92,11 +91,9 @@ final class MenuMigrationService {
             }
             
             if update.isEmpty { continue }
-            
-            print("🔧 Migrating \(document.documentID) with fields: \(update.keys)")
+            Log.info("🔧 Migrating \(document.documentID) with fields: \(update.keys)")
             try await document.reference.setData(update, merge: true)
         }
-        
-        print("✅ Menu items migration completed")
+        Log.info(">>> Menu items migration completed")
     }
 }

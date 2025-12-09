@@ -113,7 +113,7 @@ struct MenuItemDetail: View {
     }
     
     private func addToCart() {
-        print("Add to cart tapped, total price: \(totalPriceText)")
+        Log.info("Add to cart tapped, total price: \(totalPriceText)")
         withAnimation(.spring()) {
             dismiss()
         }

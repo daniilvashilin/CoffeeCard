@@ -41,7 +41,7 @@ final class MenuViewModel: ObservableObject {
             // Preload images in background
             preloadImages(for: fetched)
         } catch {
-            Log.error("Failed to load menu from repository", error)
+            Log.error("Failed to load menu from repository", error: error)
             // Keep cached data (if any) and show error message
             self.errorMessage = error.localizedDescription
         }

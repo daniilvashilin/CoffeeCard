@@ -44,7 +44,7 @@ final class SessionViewModel: ObservableObject {
                 guard let self else { return }
                 
                 if let error = error {
-                    print("User listener error:", error)
+                    Log.error("User listener error: \(error)")
                     return
                 }
                 
@@ -62,7 +62,7 @@ final class SessionViewModel: ObservableObject {
                         }
                     }
                 } catch {
-                    print("User decoding error:", error)
+                    Log.error("User decoding error: \(error)")
                 }
             }
     }

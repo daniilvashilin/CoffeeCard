@@ -61,6 +61,11 @@ struct UserSettingsView: View {
                                 .foregroundStyle(.primaryText)
                                 .cornerRadius(12)
                         }
+                        .simultaneousGesture(TapGesture().onEnded {
+                            withAnimation(.spring(response: 0.25, dampingFraction: 0.9)) {
+                                isTabBarHidden = true
+                            }
+                        })
                     }
                     .padding()
                     .frame(maxWidth: .infinity, maxHeight: .infinity)

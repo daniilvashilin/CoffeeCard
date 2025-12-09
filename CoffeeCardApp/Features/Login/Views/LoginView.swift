@@ -14,8 +14,9 @@ struct LoginView: View {
             ImageTitle()
             CCTextField(title: "Email", text: $email, icon: "envelope")
             CCPasswordField(title: "Password", password: $password)
+            
             NavigationLink {
-                RegisterView()
+                RegisterView(isTabBarHidden: $isTabBarHidden)
             } label: {
                 Text("Not a member? Sign up")
             }
@@ -27,12 +28,6 @@ struct LoginView: View {
             }
         }
         .padding()
-        .onAppear {
-            isTabBarHidden = true
-        }
-        .onDisappear {
-            isTabBarHidden = false
-        }
         .onChange(of: sessionViewModel.isSignedIn, initial: false) { oldValue, newValue in
             if oldValue != newValue, newValue {
                 dismiss()
